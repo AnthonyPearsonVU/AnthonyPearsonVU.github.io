@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About &mdash; Anthony Pearson</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      border-bottom: 1px solid #21262d;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    header a {
+      color: #c9d1d9;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    header a:hover { color: #58a6ff; }
+
+    nav {
+      margin-left: auto;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: #8b949e;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.15s;
+    }
+
+    nav a:hover { color: #c9d1d9; }
+    nav a.active { color: #c9d1d9; }
+
+    main {
+      flex: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      width: 100%;
+    }
+
+    .page-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #e6edf3;
+      margin-bottom: 2.5rem;
+    }
+
+    .section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-heading {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #58a6ff;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #8b949e;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+      color: #484f58;
+      border-top: 1px solid #21262d;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html">Anthony Pearson</a>
+    <nav>
+      <a class="active" href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="page-title">About Me</h1>
+
+    <div class="section">
+      <div class="section-heading">Role</div>
+      <p>
+        I'm a software engineer at Veterans United Home Loans, working on API development
+        and integration infrastructure. My day-to-day centers on building and maintaining
+        REST APIs and microservices that serve a high-volume mortgage origination platform.
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-heading">What I work on</div>
+      <p>
+        I specialize in Azure API Management &mdash; gateway routing, policy configuration, and
+        OpenAPI specification design across multi-environment deployments. I operate in
+        multi-repo architectures where API source code and infrastructure configuration live
+        in separate repositories, and I've developed a careful, systematic approach to reviewing
+        existing routes before introducing changes.
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-heading">How I work</div>
+      <p>
+        I'm detail-oriented in system configuration and prefer to fully understand existing
+        infrastructure before modifying it. I follow disciplined testing practices in C# and .NET,
+        and I take code review seriously as a tool for shared understanding, not just defect
+        detection. My toolchain spans GitHub, Jira, and Confluence, and I work in a
+        Windows-based development environment.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2026 Anthony Pearson
+  </footer>
+
+</body>
+</html>
