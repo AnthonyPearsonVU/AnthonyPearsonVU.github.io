@@ -1,0 +1,225 @@
+/* ==========================================================================
+   Shared stylesheet for AnthonyPearsonVU.github.io
+
+   Theming: every color is a custom property on :root. The dark GitHub palette
+   is the default; the light palette overrides those same properties inside a
+   prefers-color-scheme: light media query, so the site follows the visitor's
+   OS/browser setting with no JavaScript.
+   ========================================================================== */
+
+:root {
+  /* Tells the browser which schemes we support, so UA-rendered chrome
+     (scrollbars, form controls, caret) matches the active theme. */
+  color-scheme: dark light;
+
+  /* Dark palette (default) */
+  --bg: #0d1117;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --text-strong: #e6edf3;
+  --text-faint: #484f58;
+  --accent: #58a6ff;
+  --border: #21262d;
+  --surface: #161b22;
+  --surface-hover: #1c2128;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Light palette */
+    --bg: #ffffff;
+    --text: #24292f;
+    --text-muted: #57606a;
+    --text-strong: #1f2328;
+    --text-faint: #6e7781;
+    --accent: #0969da;
+    --border: #d0d7de;
+    --surface: #f6f8fa;
+    --surface-hover: #eaeef2;
+  }
+}
+
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Base layout */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header + nav */
+header {
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+header a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+header a:hover { color: var(--accent); }
+
+nav {
+  margin-left: auto;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.15s;
+}
+
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--text); }
+
+/* Main content region */
+main {
+  flex: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  width: 100%;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  border-top: 1px solid var(--border);
+}
+
+/* Shared page heading (about, skills) */
+.page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  margin-bottom: 2.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Home page (index.html)
+   -------------------------------------------------------------------------- */
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.hero-bio {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  max-width: 600px;
+  margin-bottom: 3rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  display: block;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+  background: var(--surface);
+}
+
+.card:hover {
+  border-color: var(--accent);
+  background: var(--surface-hover);
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+
+.card-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   About page (about.html)
+   -------------------------------------------------------------------------- */
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.section-heading {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.section p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Skills page (skills.html)
+   -------------------------------------------------------------------------- */
+.skill-group {
+  margin-bottom: 2.25rem;
+}
+
+.skill-group-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text);
+}

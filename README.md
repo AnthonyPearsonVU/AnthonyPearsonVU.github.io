@@ -1,22 +1,98 @@
 # Anthony Pearson
 
-Software Engineer | Veterans United Home Loans
+Website to know about me and other things.
 
----
+Live at [anthonypearsonvu.github.io](https://anthonypearsonvu.github.io).
 
-I'm a software engineer at Veterans United Home Loans, where I work on API development and integration infrastructure. I specialize in building and maintaining REST APIs and microservices, with hands-on experience in Azure API Management — including gateway routing, policy configuration, and OpenAPI specification design across multi-environment deployments.
+## Project structure
 
-I work primarily in C# and .NET, following disciplined testing practices, and navigate multi-repo architectures where API source code and infrastructure configuration live separately. My toolchain spans GitHub, Atlassian (Jira and Confluence), and Windows-based development environments.
+```
+docs/              published site (this folder is what gets deployed)
+  index.html       landing page
+  about.html       about page
+  skills.html      skills page
+  site.css         shared stylesheet for all pages
+.github/workflows/
+  deploy.yml       GitHub Pages deployment
+```
 
-I'm detail-oriented in how I approach system configuration, preferring to carefully review existing routes and infrastructure before making changes.
+## Setup
 
----
+There is nothing to install. This is a set of hand-written static HTML pages with
+no build system, no framework, no package manager, and no dependencies.
 
-## Skills
+```bash
+git clone https://github.com/AnthonyPearsonVU/AnthonyPearsonVU.github.io.git
+cd AnthonyPearsonVU.github.io
+```
 
-- **Languages & Frameworks:** C#, .NET
-- **API & Integration:** REST APIs, Microservices, Azure API Management
-- **API Gateway:** Gateway routing, policy configuration, OpenAPI specification design
-- **Infrastructure:** Multi-environment deployments, multi-repo architectures
-- **Toolchain:** GitHub, Jira, Confluence
-- **Practices:** Test-driven development, disciplined code review, thorough infrastructure analysis
+## Run locally
+
+The simplest option is to open `docs/index.html` directly in a browser.
+
+To preview with working relative links (recommended), serve the `docs/` folder with
+any static web server, then visit <http://localhost:8000>:
+
+```bash
+# Python 3
+python -m http.server --directory docs 8000
+```
+
+```bash
+# Node.js
+npx serve docs
+```
+
+Edits to the HTML or CSS show up on refresh — no restart or rebuild needed.
+
+## Theming (light / dark)
+
+The site ships both a light and a dark theme and picks one automatically from the
+visitor's OS or browser setting. There is no toggle and no JavaScript.
+
+Every color is a CSS custom property defined on `:root` in
+[docs/site.css](docs/site.css). The dark GitHub palette is the default; a
+`@media (prefers-color-scheme: light)` block redefines the same properties with
+light values. `color-scheme: dark light` on `:root` also makes browser-rendered
+chrome (scrollbars, form controls, caret) match the active theme.
+
+| Property          | Dark      | Light     | Used for                       |
+| ----------------- | --------- | --------- | ------------------------------ |
+| `--bg`            | `#0d1117` | `#ffffff` | page background                |
+| `--text`          | `#c9d1d9` | `#24292f` | body text, nav active, tags    |
+| `--text-muted`    | `#8b949e` | `#57606a` | secondary/body paragraph text  |
+| `--text-strong`   | `#e6edf3` | `#1f2328` | page and hero headings         |
+| `--text-faint`    | `#484f58` | `#6e7781` | footer                         |
+| `--accent`        | `#58a6ff` | `#0969da` | links, headings, hover borders |
+| `--border`        | `#21262d` | `#d0d7de` | header/footer rules, outlines  |
+| `--surface`       | `#161b22` | `#f6f8fa` | cards and tags                 |
+| `--surface-hover` | `#1c2128` | `#eaeef2` | card hover background          |
+
+To add a new color, define it in both blocks and reference it as
+`var(--name)` — never hardcode a hex value in a rule, or that rule will only be
+correct in one theme.
+
+To test the other theme without changing your OS setting, use your browser
+devtools: Chrome/Edge DevTools → Rendering → "Emulate CSS media feature
+prefers-color-scheme", or Firefox DevTools → Inspector → the sun/moon toggle.
+
+## Build
+
+There is no build step. The files in `docs/` are served as-is.
+
+## Deploy
+
+Deployment is automatic. Any push to `main` triggers
+[.github/workflows/deploy.yml](.github/workflows/deploy.yml), which uploads the
+`docs/` folder as the GitHub Pages artifact and publishes it. There is no test,
+lint, or build stage in CI.
+
+Files outside `docs/` (including this README) are not published.
+
+## Adding a page
+
+1. Copy an existing page in `docs/` to keep the header, nav, and footer markup consistent.
+2. Link the shared stylesheet in the `<head>`: `<link rel="stylesheet" href="site.css" />`.
+3. Add a nav link to the new page in every other page — the nav markup is duplicated
+   per file and must be kept in sync by hand.
+4. Mark the current page's nav link with `class="active"`.
